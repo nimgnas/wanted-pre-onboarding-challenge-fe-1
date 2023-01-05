@@ -10,9 +10,10 @@ const fontSize = {
 
 const colors = {
   lightBlack: "#2D3036",
-  Black: "#1F2228",
+  black: "#1F2228",
   gray: "#57595D",
   blue: "#389CFF",
+  white: "whitesmoke",
 };
 
 const theme: DefaultTheme = {
