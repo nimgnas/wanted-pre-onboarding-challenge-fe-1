@@ -15,7 +15,9 @@ function TodoList() {
       <Todo></Todo>
       <Todo></Todo>
       <Todo></Todo>
-      <AddTodoBtn>+</AddTodoBtn>
+      <AddTodoBtn>
+        <span>+</span>
+      </AddTodoBtn>
     </Content>
   );
 }
@@ -54,6 +56,7 @@ const Todo = styled.div`
   .arrow {
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSize.lg};
+    cursor: pointer;
   }
 
   &:hover {
@@ -66,16 +69,20 @@ const Todo = styled.div`
 const AddTodoBtn = styled.div`
   height: 45px;
   width: 45px;
-  font-size: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.blue};
   position: absolute;
   bottom: 0;
   right: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
+
+  span {
+    font-size: 2.5rem;
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;

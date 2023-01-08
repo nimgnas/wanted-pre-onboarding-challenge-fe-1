@@ -33,12 +33,15 @@ export default SignUp;
 const Header = styled.div`
   height: 100px;
   width: 100%;
-  font-size: ${({ theme }) => theme.fontSize.lg};
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
-  color: ${({ theme }) => theme.colors.white};
+
+  span {
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
 
 const Body = styled.div`
@@ -103,12 +106,15 @@ const Button = styled.button`
 const Footer = styled.div`
   height: 100px;
   width: 100%;
-  font-size: ${({ theme }) => theme.fontSize.base};
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.gray};
   background-color: ${({ theme }) => theme.colors.black};
+
+  span {
+    font-size: ${({ theme }) => theme.fontSize.base};
+    color: ${({ theme }) => theme.colors.gray};
+  }
 
   a {
     color: ${({ theme }) => theme.colors.white};
