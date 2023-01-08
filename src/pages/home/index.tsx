@@ -1,19 +1,21 @@
 import styled from "styled-components";
 import TodoDetail from "./TodoDetail";
 import TodoList from "./TodoList";
+import AddTodo from "./AddTodo";
 
 function Home() {
   return (
     <StyledHome>
-      <TodoContainer>
-        <Header>
-          <span>Todo</span>
-        </Header>
-        <Body>
-          <TodoList />
+      <Header>
+        <span>Todo</span>
+      </Header>
+      <Body>
+        <TodoList />
+        <Container>
           <TodoDetail />
-        </Body>
-      </TodoContainer>
+          <AddTodo />
+        </Container>
+      </Body>
     </StyledHome>
   );
 }
@@ -21,15 +23,6 @@ function Home() {
 export default Home;
 
 const StyledHome = styled.div`
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.black};
-`;
-
-const TodoContainer = styled.div`
   height: 700px;
   width: 900px;
   display: flex;
@@ -56,4 +49,14 @@ const Body = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   position: relative;
+`;
+
+const Container = styled.div`
+  height: 610px;
+  width: 410px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  border-radius: 10px;
 `;

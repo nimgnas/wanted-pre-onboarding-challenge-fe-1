@@ -4,9 +4,7 @@ import styled from "styled-components";
 function Auth() {
   return (
     <StyledAuth>
-      <AuthContainer>
-        <Outlet />
-      </AuthContainer>
+      <Outlet />
     </StyledAuth>
   );
 }
@@ -14,15 +12,6 @@ function Auth() {
 export default Auth;
 
 const StyledAuth = styled.div`
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.black};
-`;
-
-const AuthContainer = styled.div`
   height: 500px;
   width: 700px;
   border-radius: 10px;

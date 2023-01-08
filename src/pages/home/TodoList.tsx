@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 function TodoList() {
   return (
-    <Content>
+    <StyledTodoList>
       <Todo>
         <span className="title">밥먹고 양치하기</span>
         <span className="arrow">&rarr;</span>
@@ -18,13 +18,13 @@ function TodoList() {
       <AddTodoBtn>
         <span>+</span>
       </AddTodoBtn>
-    </Content>
+    </StyledTodoList>
   );
 }
 
 export default TodoList;
 
-const Content = styled.div`
+const StyledTodoList = styled.div`
   height: 610px;
   width: 410px;
   margin: 20px;
@@ -46,6 +46,7 @@ const Todo = styled.div`
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors.black};
   box-shadow: rgb(24, 24, 24) 3px 3px 6px 0px inset, rgba(31, 34, 40, 0.5) -3px -3px 6px 1px inset;
+  cursor: pointer;
 
   .title {
     color: ${({ theme }) => theme.colors.white};
@@ -56,7 +57,6 @@ const Todo = styled.div`
   .arrow {
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSize.lg};
-    cursor: pointer;
   }
 
   &:hover {

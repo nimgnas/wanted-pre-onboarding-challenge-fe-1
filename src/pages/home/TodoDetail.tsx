@@ -2,36 +2,30 @@ import styled from "styled-components";
 
 function TodoDetail() {
   return (
-    <Content>
-      <Wrapper>
-        <Header>
-          <span className="arrow">﹤</span>
-          <span className="title">타이틀</span>
-          <span className="delete">X</span>
-        </Header>
-        <Body>
-          <p></p>
-        </Body>
-        <Footer>
-          <span>수정</span>
-        </Footer>
-      </Wrapper>
-    </Content>
+    <StyledTodoDetail>
+      <Header>
+        <span className="arrow">﹤</span>
+        <span className="title">타이틀</span>
+        <span className="delete">X</span>
+      </Header>
+      <Body>
+        <p></p>
+      </Body>
+      <Footer>
+        <span>수정</span>
+      </Footer>
+    </StyledTodoDetail>
   );
 }
 
 export default TodoDetail;
 
-const Content = styled.div`
-  height: 610px;
-  width: 410px;
-  margin: 20px;
-  border-radius: 10px;
-`;
-
-const Wrapper = styled.div`
+const StyledTodoDetail = styled.div`
   height: 300px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.black};
 `;
@@ -58,8 +52,10 @@ const Header = styled.div`
 `;
 
 const Body = styled.div`
-  height: 210px;
+  height: 110px;
   padding: 10px 20px;
+  margin: 0px 20px;
+  background-color: ${({ theme }) => theme.colors.lightBlack};
 
   p {
     color: ${({ theme }) => theme.colors.white};
