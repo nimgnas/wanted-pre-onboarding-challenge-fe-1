@@ -1,16 +1,27 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Outlet, useNavigate, useOutlet } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/globalStyles";
 import theme from "./styles/theme";
 
 function App() {
+  const queryClient = new QueryClient();
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   navigate("/auth/login");
+  // }, []);
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <StyledApp>
-        <Outlet />
-      </StyledApp>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <StyledApp>
+          <Outlet />
+        </StyledApp>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

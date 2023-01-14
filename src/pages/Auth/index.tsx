@@ -1,10 +1,45 @@
-import { Outlet } from "react-router-dom";
+import { MutateFunction, useMutation } from "react-query";
+import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { login, signUp } from "../../api";
+
+interface IUser {
+  email: string;
+  password: string;
+}
+
+export interface IAuthContent {
+  loginMutate: MutateFunction<unknown, unknown, IUser, unknown>;
+  signUpMutate: MutateFunction<unknown, unknown, IUser, unknown>;
+}
 
 function Auth() {
+  const navigate = useNavigate();
+
+  const { mutate: loginMutate } = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      alert(data.message);
+      navigate("/home");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+  const { mutate: signUpMutate } = useMutation({
+    mutationFn: signUp,
+    onSuccess: (data) => {
+      alert(data.message);
+      navigate("/auth/login");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
   return (
     <StyledAuth>
-      <Outlet />
+      <Outlet context={{ loginMutate, signUpMutate }} />
     </StyledAuth>
   );
 }
