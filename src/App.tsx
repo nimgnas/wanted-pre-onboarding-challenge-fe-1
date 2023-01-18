@@ -7,11 +7,6 @@ import theme from "./styles/theme";
 
 function App() {
   const queryClient = new QueryClient();
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   navigate("/auth/login");
-  // }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

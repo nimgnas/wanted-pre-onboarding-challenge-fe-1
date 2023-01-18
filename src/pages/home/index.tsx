@@ -1,9 +1,57 @@
 import styled from "styled-components";
 import TodoDetail from "./TodoDetail";
-import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
+import TodoList from "./TodoList";
+import { useMutation, useQuery } from "react-query";
+import { createTodo, deleteTodo, getTodoById, getTodos, updateTodo } from "../../api";
 
 function Home() {
+  const { data: todoList } = useQuery({
+    queryKey: ["todos"],
+    queryFn: () => getTodos(token),
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
+  const { data: todo } = useQuery({
+    queryKey: ["todos", todoId],
+    queryFn: () => getTodoById(todoId),
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
+  const { mutate: createTodoMutate } = useMutation({
+    mutationFn: createTodo,
+    onSuccess: () => {
+      console.log("작성완료");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
+  const { mutate: updateTodoMutate } = useMutation({
+    mutationFn: updateTodo,
+    onSuccess: () => {
+      console.log("업데이트 완료");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
+  const { mutate: deleteTodoMutate } = useMutation({
+    mutationFn: deleteTodo,
+    onSuccess: () => {
+      console.log("삭제 완료");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
   return (
     <StyledHome>
       <Header>

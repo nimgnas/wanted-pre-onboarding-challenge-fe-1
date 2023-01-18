@@ -7,12 +7,17 @@ interface IUser {
   password: string;
 }
 
+interface IProps {
+  mutateFn: MutateFunction<unknown, unknown, IUser, unknown>;
+  submitText: string;
+}
+
 const authValidateHandler = (email: string, password: string) => {
   const emailRegEx = /[a-z0-9]+@[a-z]+\.+[a-z]{2,3}/;
   return emailRegEx.test(email) && password.length >= 8;
 };
 
-function AuthForm({ mutateFn }: { mutateFn: MutateFunction<unknown, unknown, IUser, unknown> }) {
+function AuthForm({ mutateFn, submitText }: IProps) {
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [isValidated, setIsValidated] = useState(false);
   const { email, password } = inputs;
@@ -39,7 +44,7 @@ function AuthForm({ mutateFn }: { mutateFn: MutateFunction<unknown, unknown, IUs
       </InputContent>
       <SubmitWrapper>
         <Button type="submit" disabled={!isValidated}>
-          Sign up
+          {submitText}
         </Button>
       </SubmitWrapper>
     </Form>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { MutateFunction, useMutation } from "react-query";
 import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -14,18 +15,18 @@ export interface IAuthContent {
 }
 
 function Auth() {
-  const navigate = useNavigate();
-
   const { mutate: loginMutate } = useMutation({
     mutationFn: login,
-    onSuccess: (data) => {
-      alert(data.message);
-      navigate("/home");
+    onSuccess: ({ message, token }) => {
+      alert(message);
+      localStorage.setItem("token", token);
+      navigate("/");
     },
     onError: (error) => {
       alert(error);
     },
   });
+
   const { mutate: signUpMutate } = useMutation({
     mutationFn: signUp,
     onSuccess: (data) => {
@@ -36,6 +37,15 @@ function Auth() {
       alert(error);
     },
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const TOKEN = localStorage.getItem("token");
+    if (TOKEN) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <StyledAuth>

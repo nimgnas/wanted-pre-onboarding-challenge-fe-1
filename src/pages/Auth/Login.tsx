@@ -11,7 +11,7 @@ function Login() {
         <span>Log in</span>
       </Header>
       <Body>
-        <AuthForm mutateFn={loginMutate} />
+        <AuthForm mutateFn={loginMutate} submitText="Log In" />
       </Body>
       <Footer>
         <span>
