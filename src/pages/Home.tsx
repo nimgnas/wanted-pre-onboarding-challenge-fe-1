@@ -1,9 +1,12 @@
 import styled from "styled-components";
-import TodoDetail from "./TodoDetail";
-import AddTodo from "./AddTodo";
-import TodoList from "./TodoList";
+
+import AddTodo from "../components/home/AddTodo";
+
 import { useMutation, useQuery } from "react-query";
-import { createTodo, deleteTodo, getTodoById, getTodos, updateTodo } from "../../api";
+import { createTodo, deleteTodo, getTodoById, getTodos, updateTodo } from "../api";
+import TodoList from "../components/home/TodoList";
+import TodoDetail from "../components/home/TodoDetail";
+import { Outlet } from "react-router-dom";
 
 function Home() {
   const { data: todoList } = useQuery({
@@ -60,7 +63,7 @@ function Home() {
       <Body>
         <TodoList />
         <Container>
-          <TodoDetail />
+          <Outlet />
           <AddTodo />
         </Container>
       </Body>

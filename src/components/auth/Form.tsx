@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { MutateFunction } from "react-query";
 import styled from "styled-components";
 
 interface IUser {
@@ -8,7 +7,7 @@ interface IUser {
 }
 
 interface IProps {
-  mutateFn: MutateFunction<unknown, unknown, IUser, unknown>;
+  // mutateFn: MutateFunction<unknown, unknown, IUser, unknown>;
   submitText: string;
 }
 
@@ -17,7 +16,7 @@ const authValidateHandler = (email: string, password: string) => {
   return emailRegEx.test(email) && password.length >= 8;
 };
 
-function AuthForm({ mutateFn, submitText }: IProps) {
+function AuthForm({ submitText }: IProps) {
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [isValidated, setIsValidated] = useState(false);
   const { email, password } = inputs;
@@ -33,7 +32,7 @@ function AuthForm({ mutateFn, submitText }: IProps) {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutateFn({ email, password });
+    // mutateFn({ email, password });
   };
 
   return (

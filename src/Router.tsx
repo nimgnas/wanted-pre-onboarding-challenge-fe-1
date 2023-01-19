@@ -1,25 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
-import Login from "./pages/auth/Login";
-import SignUp from "./pages/auth/SignUp";
-import Auth from "./pages/auth";
-import Home from "./pages/home";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
+import TodoDetail from "./components/home/TodoDetail";
 
 const Router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
-    children: [
-      { index: true, element: <Home /> },
-      {
-        path: "auth",
-        element: <Auth />,
-        children: [
-          { path: "login", element: <Login /> },
-          { path: "signup", element: <SignUp /> },
-        ],
-      },
-    ],
+    path: "/todos",
+    element: <Home />,
+    children: [{ path: ":id", element: <TodoDetail /> }],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  {
+    path: "/*",
+    element: <div style={{ color: "white" }}>!!404!!</div>,
   },
 ]);
 

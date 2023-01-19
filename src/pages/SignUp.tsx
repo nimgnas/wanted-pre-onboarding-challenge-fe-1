@@ -1,28 +1,49 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { IAuthContent } from ".";
-import AuthForm from "./AuthForm";
+import Form from "../components/auth/Form";
+import { useMutation } from "react-query";
+import { signUp } from "../api";
 
-function Login() {
-  const { loginMutate } = useOutletContext<IAuthContent>();
+function SignUp() {
+  const navigate = useNavigate();
+
+  const { mutate: signUpMutate } = useMutation({
+    mutationFn: signUp,
+    onSuccess: (data) => {
+      alert(data.message);
+      navigate("/auth/login");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
   return (
-    <>
+    <StyledSignUp>
       <Header>
-        <span>Log in</span>
+        <span>Sign up</span>
       </Header>
       <Body>
-        <AuthForm mutateFn={loginMutate} submitText="Log In" />
+        <Form submitText="Sign Up" />
       </Body>
       <Footer>
         <span>
-          회원가입은 <Link to={"/auth/signup"}>여기를</Link> 클릭해 주세요.
+          로그인은 <Link to={"/auth/login"}>여기를</Link> 클릭해 주세요.
         </span>
       </Footer>
-    </>
+    </StyledSignUp>
   );
 }
 
-export default Login;
+export default SignUp;
+
+const StyledSignUp = styled.div`
+  height: 500px;
+  width: 700px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.lightBlack};
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+`;
 
 const Header = styled.div`
   height: 100px;
