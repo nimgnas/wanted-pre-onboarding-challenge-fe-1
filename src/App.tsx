@@ -1,22 +1,16 @@
-import { useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Outlet, useNavigate, useOutlet } from "react-router-dom";
-import styled, { ThemeProvider } from "styled-components";
+import { RouterProvider } from "react-router-dom";
+import styled from "styled-components";
+import Router from "./Router";
 import GlobalStyle from "./styles/globalStyles";
-import theme from "./styles/theme";
 
 function App() {
-  const queryClient = new QueryClient();
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <StyledApp>
-          <Outlet />
-        </StyledApp>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <>
+      <GlobalStyle />
+      <StyledApp>
+        <RouterProvider router={Router} />
+      </StyledApp>
+    </>
   );
 }
 
